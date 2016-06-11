@@ -23,8 +23,9 @@ void setup()
   background(bg);
   displayGrid();
   frameRate(10);
+  frame.setTitle("psim");
   cp5 = new ControlP5(this);
-
+  
   s1=new Slider(cp5, "Initial Velocity")
     .setPosition(20, 20)
     .setRange(0, 100)
