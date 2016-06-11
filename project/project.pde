@@ -10,20 +10,21 @@ float t = 0;
 float theta = 45;
 float x0=20, y0=300;
 
+color bg=#17181A;
 boolean myflag=false;
 
 void setup()
 {
   size(700, 400);
   noStroke();
-  background(0);
+  background(bg);
   displayGrid();
   cp5 = new ControlP5(this);
 
   s1=new Slider(cp5, "Initial Velocity")
     .setPosition(20, 20)
     .setRange(0, 100)
-    .setSize(100, 19)
+    .setSize(100, 21)
     .setLabel("Initial Velocity")
     .setColor(ControlP5.THEME_RED)
     ;
@@ -31,14 +32,14 @@ void setup()
   s2=new Slider(cp5, "Theta")
     .setPosition(200, 20)
     .setRange(0, 90)
-    .setSize(100, 19)
+    .setSize(100, 21)
     .setLabel("Theta")
     .setColor(ControlP5.THEME_RED)
     ;
 
   b1=new Button(cp5, "Start")
     .setPosition(400, 20)
-    .setSize(60, 19)
+    .setSize(60, 21)
     .setValue(200)
     .setColor(ControlP5.THEME_RED);
 
@@ -58,7 +59,7 @@ void setup()
 
   b2=new Button(cp5, "Reset")
     .setPosition(480, 20)
-    .setSize(60, 19)
+    .setSize(60, 21)
     .setValue(200)
     .setColor(ControlP5.THEME_RED);
 
@@ -68,7 +69,7 @@ void setup()
     {
       if (theEvent.getAction()==ControlP5.PRESS)
       {
-        background(0);
+        background(bg);
         displayGrid();
       }
     }
