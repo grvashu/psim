@@ -23,7 +23,7 @@ void setup()
   background(bg);
   displayGrid();
   frameRate(10);
-  frame.setTitle("psim");
+  surface.setTitle("psim");
   cp5 = new ControlP5(this);
   
   s1=new Slider(cp5, "Initial Velocity")
@@ -203,4 +203,10 @@ void displayGrid()
 
   stroke(255, 100);
   line(0, 300, width, 300);
+}
+
+void keyPressed() {
+  if (key == ESC) {
+    key = 0;
+  }
 }
