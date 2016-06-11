@@ -110,20 +110,20 @@ void setup()
     .lock()
     ;
 
-  s6=new Slider(cp5, "X Displacement")
+  s6=new Slider(cp5, "Range")
     .setPosition(20, 360)
     .setRange(0, 2000)
     .setSize(100, 21)
-    .setLabel("X Displacement(m)")
+    .setLabel("Range(m)")
     .setColor(ControlP5.THEME_RETRO)
     .lock()
     ;
 
-  s7=new Slider(cp5, "Y Displacement")
+  s7=new Slider(cp5, "Max.Height")
     .setPosition(220, 360)
     .setRange(0, 2000)
     .setSize(100, 21)
-    .setLabel("Y Displacement(m)")
+    .setLabel("Max.Height(m)")
     .setColor(ControlP5.THEME_RETRO)
     .lock()
     ;
@@ -149,8 +149,8 @@ void draw()
     s3.changeValue(t);
     s4.changeValue(vx);
     s5.changeValue(vy);
-    s6.changeValue(20+x);
-    s7.changeValue(300-y);
+    s6.changeValue(u*t*cos(theta));
+    s7.changeValue(u*u*sin(theta)*sin(theta)/(2*9.8));
     
     stroke(255, 0, 0, 200);
     strokeWeight(5);
