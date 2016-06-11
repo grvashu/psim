@@ -20,7 +20,7 @@ void setup()
   cp5 = new ControlP5(this);
 
   s1=new Slider(cp5, "Initial Velocity")
-    .setPosition(50, 50)
+    .setPosition(20, 20)
     .setRange(0, 100)
     .setSize(100, 19)
     .setLabel("Initial Velocity")
@@ -28,7 +28,7 @@ void setup()
     ;
 
   s2=new Slider(cp5, "Theta")
-    .setPosition(250, 50)
+    .setPosition(200, 20)
     .setRange(0, 90)
     .setSize(100, 19)
     .setLabel("Theta")
@@ -36,7 +36,7 @@ void setup()
     ;
 
   b=new Button(cp5, "Start")
-    .setPosition(400, 50)
+    .setPosition(400, 20)
     .setSize(100, 19)
     .setValue(200)
     .setColor(ControlP5.THEME_RED);
@@ -54,6 +54,8 @@ void setup()
     }
   }
   );
+  stroke(255,100);
+  line(0,300,width,300);
 }
 
 void draw()
@@ -62,11 +64,11 @@ void draw()
   {
     stroke(255);
     float x=u*t*cos(theta);
-    float y=height-(u*t*sin(theta)-4.9*(t*(t=t+0.01)));
+    float y=300-(u*t*sin(theta)-4.9*(t*(t=t+0.01)));
     point(x, y) ;
     t+=0.1;
 
-    if (y>height)
+    if (y>300)
     {
       myflag=false;
       t=0;
