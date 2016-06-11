@@ -10,9 +10,11 @@ float u = 100;
 float t = 0;
 float theta = 45;
 float x0=20, y0=300;
-
 color bg=#17181A;
 boolean myflag=false;
+
+//output var
+Slider s3, s4, s5, s6, s7;
 
 void setup()
 {
@@ -20,26 +22,27 @@ void setup()
   noStroke();
   background(bg);
   displayGrid();
+  frameRate(10);
   cp5 = new ControlP5(this);
 
   s1=new Slider(cp5, "Initial Velocity")
     .setPosition(20, 20)
     .setRange(0, 100)
     .setSize(100, 21)
-    .setLabel("Initial Velocity")
+    .setLabel("Initial Velocity (m/s)")
     .setColor(ControlP5.THEME_RED)
     ;
 
   s2=new Slider(cp5, "Theta")
-    .setPosition(200, 20)
+    .setPosition(240, 20)
     .setRange(0, 90)
     .setSize(100, 21)
-    .setLabel("Theta")
+    .setLabel("Theta (deg)")
     .setColor(ControlP5.THEME_RED)
     ;
 
   b1=new Button(cp5, "Start")
-    .setPosition(400, 20)
+    .setPosition(420, 20)
     .setSize(60, 21)
     .setValue(200)
     .setColor(ControlP5.THEME_RED);
@@ -59,7 +62,7 @@ void setup()
   );
 
   b2=new Button(cp5, "Reset")
-    .setPosition(480, 20)
+    .setPosition(500, 20)
     .setSize(60, 21)
     .setValue(200)
     .setColor(ControlP5.THEME_RED);
@@ -76,6 +79,54 @@ void setup()
     }
   }
   );
+
+  //output var
+
+  s3=new Slider(cp5, "Time")
+    .setPosition(20, 320)
+    .setRange(0, 20)
+    .setSize(100, 21)
+    .setLabel("Time(s)")
+    .setColor(ControlP5.THEME_RETRO)
+    .lock()
+    ;
+
+  s4=new Slider(cp5, "X Velocity")
+    .setPosition(220, 320)
+    .setRange(0, 100)
+    .setSize(100, 21)
+    .setLabel("X Velocity(m/s)")
+    .setColor(ControlP5.THEME_RETRO)
+    .lock()
+    ;
+
+
+  s5=new Slider(cp5, "Y Velocity")
+    .setPosition(420, 320)
+    .setRange(0, 100)
+    .setSize(100, 21)
+    .setLabel("Y Velocity(m/s)")
+    .setColor(ControlP5.THEME_RETRO)
+    .lock()
+    ;
+
+  s6=new Slider(cp5, "X Displacement")
+    .setPosition(20, 360)
+    .setRange(0, 2000)
+    .setSize(100, 21)
+    .setLabel("X Displacement(m)")
+    .setColor(ControlP5.THEME_RETRO)
+    .lock()
+    ;
+
+  s7=new Slider(cp5, "Y Displacement")
+    .setPosition(220, 360)
+    .setRange(0, 2000)
+    .setSize(100, 21)
+    .setLabel("Y Displacement(m)")
+    .setColor(ControlP5.THEME_RETRO)
+    .lock()
+    ;
 }
 
 void draw()
@@ -83,8 +134,10 @@ void draw()
   if (myflag==true)
   {
     stroke(255);
-    float x=20+u*t*cos(theta);
-    float y=300-(u*t*sin(theta)-4.9*(t*(t=t+0.01)));
+    float vx=u*cos(theta);
+    float vy=u*sin(theta)-9.8*t;
+    float x=20+(u*t*cos(theta));
+    float y=300-(u*t*sin(theta)-4.9*t*t);
 
     if (y>300)
     {
@@ -92,6 +145,13 @@ void draw()
       t=2*u*sin(theta)/9.8;
       x=20+u*t*cos(theta);
     }
+
+    s3.changeValue(t);
+    s4.changeValue(vx);
+    s5.changeValue(vy);
+    s6.changeValue(20+x);
+    s7.changeValue(300-y);
+    
     stroke(255, 0, 0, 200);
     strokeWeight(5);
     point(x, y) ;
@@ -106,9 +166,11 @@ void draw()
       t=0;
       x0=20;
       y0=300;
+      println("Trajectory end.");
+    } else {
+      x0=x;
+      y0=y;
     }
-    x0=x;
-    y0=y;
   }
 }
 
